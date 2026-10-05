@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="tile" x1="0.15" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#2e1404"/>
+      <stop offset="0.55" stop-color="#170902"/>
+      <stop offset="1" stop-color="#070301"/>
+    </linearGradient>
+    <radialGradient id="aura" cx="0.5" cy="0.5" r="0.58">
+      <stop offset="0" stop-color="#ff7f1a" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#ff7f1a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="glyph" gradientUnits="userSpaceOnUse" x1="400" y1="192" x2="624" y2="820">
+      <stop offset="0" stop-color="#ffdcae"/>
+      <stop offset="1" stop-color="#ff7410"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.30"/>
+      <stop offset="0.4" stop-color="#ffffff" stop-opacity="0.03"/>
+      <stop offset="0.72" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0.18"/>
+    </linearGradient>
+    <clipPath id="tileClip">
+      <rect x="92" y="92" width="840" height="840" rx="196" ry="196"/>
+    </clipPath>
+  </defs>
+
+  <rect x="92" y="92" width="840" height="840" rx="196" ry="196" fill="url(#tile)"/>
+  <g clip-path="url(#tileClip)">
+    <rect x="92" y="92" width="840" height="840" fill="url(#aura)"/>
+  </g>
+
+  <path d="M512 192 C 598 306 740 446 740 592 A 228 228 0 0 1 284 592 C 284 446 426 306 512 192 Z"
+        fill="none" stroke="url(#glyph)" stroke-width="64" stroke-linejoin="round"/>
+  <g stroke="url(#glyph)" stroke-width="56" stroke-linecap="round">
+    <path d="M392 572 H 632"/>
+    <path d="M392 674 H 544"/>
+  </g>
+
+  <rect x="92" y="92" width="840" height="840" rx="196" ry="196" fill="url(#sheen)"/>
+</svg>

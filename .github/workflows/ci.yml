@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build:
+    name: Build & test (unsigned)
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      - name: Select newest Xcode
+        run: sudo xcode-select -s "$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)"
+
+      - name: Install build tools
+        run: brew install xcodegen librsvg
+
+      - name: Build (ad-hoc, unsigned)
+        run: ./build.sh
+
+      - name: Test
+        run: xcodebuild -project Rinse.xcodeproj -scheme Rinse -derivedDataPath .build -destination 'platform=macOS' test
+
+      - name: Verify the bundle
+        run: |
+          set -euo pipefail
+          test -f dist/Rinse.app/Contents/Resources/Assets.car
+          test -d dist/Rinse.app/Contents/PlugIns/RinseControl.appex
+          name=$(/usr/libexec/PlistBuddy -c "Print :CFBundleIconName" dist/Rinse.app/Contents/Info.plist)
+          [ "$name" = "AppIcon" ] || { echo "CFBundleIconName is '$name', expected AppIcon"; exit 1; }
