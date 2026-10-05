@@ -32,14 +32,24 @@ struct ExcludedAppsSettings: View {
                 return id != Bundle.main.bundleIdentifier && !settings.excludedBundleIDs.contains(id)
             }
             .sorted { ($0.localizedName ?? "").localizedStandardCompare($1.localizedName ?? "") == .orderedAscending }
+        let excludedApps = settings.excludedBundleIDs
+            .map { id in
+                let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: id)
+                let name = url.map { FileManager.default.displayName(atPath: $0.path).replacing(/\.app$/, with: "") }
+                return (id: id, url: url, name: name ?? knownAppNames[id] ?? id)
+            }
+            .sorted { lhs, rhs in
+                guard (lhs.url == nil) == (rhs.url == nil) else { return lhs.url != nil }
+                return lhs.name.localizedStandardCompare(rhs.name) == .orderedAscending
+            }
         Form {
             Section {
-                List(settings.excludedBundleIDs, id: \.self, selection: $selection) { bundleID in
-                    ExcludedAppRow(bundleID: bundleID)
+                List(excludedApps, id: \.id, selection: $selection) { app in
+                    ExcludedAppRow(bundleID: app.id, url: app.url, name: app.name)
                 }
                 .listStyle(.plain)
                 .scrollContentBackground(.hidden)
-                .frame(height: 300)
+                .frame(height: 440)
                 .onDeleteCommand(perform: removeSelected)
                 .dropDestination(for: URL.self) { urls, _ in
                     add(urls)
@@ -78,7 +88,7 @@ struct ExcludedAppsSettings: View {
             }
         }
         .formStyle(.grouped)
-        .frame(height: 460)
+        .frame(height: 600)
         .fileImporter(isPresented: $isChoosingApp, allowedContentTypes: [.applicationBundle], allowsMultipleSelection: true) { result in
             guard case .success(let urls) = result else { return }
             add(urls)
@@ -106,17 +116,17 @@ struct ExcludedAppsSettings: View {
 
 private struct ExcludedAppRow: View {
     let bundleID: String
+    let url: URL?
+    let name: String
 
     var body: some View {
-        let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundleID)
-        let name = url.map { FileManager.default.displayName(atPath: $0.path).replacing(/\.app$/, with: "") }
         HStack(spacing: 8) {
             Image(nsImage: url.map { NSWorkspace.shared.icon(forFile: $0.path) } ?? NSWorkspace.shared.icon(for: .applicationBundle))
                 .resizable()
                 .frame(width: 28, height: 28)
                 .opacity(url == nil ? 0.5 : 1)
             VStack(alignment: .leading, spacing: 1) {
-                Text(name ?? knownAppNames[bundleID] ?? bundleID)
+                Text(name)
                 Text(url == nil ? "Not installed · \(bundleID)" : bundleID)
                     .font(.caption)
                     .foregroundStyle(.secondary)
