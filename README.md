@@ -39,13 +39,9 @@ Run the tests with:
 xcodebuild -project Rinse.xcodeproj -scheme Rinse -derivedDataPath .build test
 ```
 
-## Testing alongside Pure Paste
+## Testing
 
-Quit Pure Paste (or any other clipboard cleaner) before testing. Two apps rewriting the same clipboard will fight over it and make results meaningless.
-
-```sh
-osascript -e 'quit app "Pure Paste"'
-```
+Quit any other clipboard cleaner before testing. Two apps rewriting the same clipboard will fight over it and make results meaningless.
 
 ## Releasing
 
