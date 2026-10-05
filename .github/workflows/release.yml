@@ -20,10 +20,9 @@ jobs:
       name: Rinse
       app: dist/Rinse.app
       cask: rinse
-      runner: macos-26
+      runner: xcode-27
       signed_by_build: true
       build: |
-        sudo xcode-select -s "$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)"
         brew install xcodegen librsvg
         CODE_SIGN_IDENTITY="Developer ID Application" DEVELOPMENT_TEAM=82K3YC8HVF \
           MARKETING_VERSION="$VERSION" CURRENT_PROJECT_VERSION="$BUILD" ./build.sh
