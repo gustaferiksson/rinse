@@ -69,6 +69,7 @@ final class AppUpdater {
         }
         if let staged {
             status = .ready(staged.version)
+            if trigger == .manual { offer(staged.version) }
             return
         }
         guard !isBusy else { return }
@@ -97,11 +98,23 @@ final class AppUpdater {
         do {
             staged = (latest, try await Self.downloadVerified(version: latest))
             status = .ready(latest)
+            offer(latest)
         } catch {
             Self.clearStaging()
             status = .failed(error.localizedDescription)
             if trigger == .manual { NSWorkspace.shared.open(Self.releasesURL) }
         }
+    }
+
+    private func offer(_ version: String) {
+        let panel = NSAlert()
+        panel.messageText = "Rinse \(version) is available"
+        panel.informativeText = "Rinse will download it, replace itself and relaunch."
+        panel.addButton(withTitle: "Install")
+        panel.addButton(withTitle: "Later")
+        NSApp.activate()
+        guard panel.runModal() == .alertFirstButtonReturn else { return }
+        installAndRelaunch()
     }
 
     func installAndRelaunch() {
