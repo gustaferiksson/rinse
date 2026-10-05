@@ -43,10 +43,10 @@ final class ClipboardMonitor {
     }
 
     private func poll() {
+        settings.reloadIsEnabled()
         let changeCount = pasteboard.changeCount
         guard changeCount != lastChangeCount else { return }
         lastChangeCount = changeCount
-        settings.reloadIsEnabled()
         guard settings.isEnabled, !NSEvent.modifierFlags.contains(.option) else { return }
 
         let types = Set(pasteboard.types ?? [])
