@@ -1,74 +1,52 @@
 {
-  "fill-specializations": [
+  "fill-specializations" : [
     {
-      "value": {
-        "automatic-gradient": "display-p3:0.247,0.596,0.886,1.00000"
+      "value" : {
+        "automatic-gradient" : "display-p3:0.247,0.596,0.886,1.00000"
       }
     },
     {
-      "appearance": "dark",
-      "value": {
-        "automatic-gradient": "display-p3:0.051,0.169,0.318,1.00000"
+      "appearance" : "dark",
+      "value" : {
+        "automatic-gradient" : "display-p3:0.051,0.169,0.318,1.00000"
       }
     }
   ],
-  "groups": [
+  "groups" : [
     {
-      "layers": [
+      "layers" : [
         {
-          "image-name": "drop.png",
-          "name": "drop",
-          "glass": true,
-          "fill-specializations": [
+          "fill-specializations" : [
             {
-              "value": {
-                "solid": "display-p3:1,1,1,0.25"
+              "value" : {
+                "solid" : "display-p3:1.000,1.000,1.000,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "solid" : "display-p3:0.400,0.690,0.949,1.00000"
               }
             }
-          ]
+          ],
+          "image-name" : "drop.png",
+          "name" : "drop"
         }
       ],
-      "name": "Drop",
-      "opacity": 1,
-      "shadow": {
-        "kind": "neutral",
-        "opacity": 0.4
+      "name" : "Drop",
+      "opacity" : 0.9,
+      "shadow" : {
+        "kind" : "layer-color",
+        "opacity" : 0.5
       },
-      "specular": true,
-      "translucency": {
-        "enabled": false,
-        "value": 0
-      }
-    },
-    {
-      "layers": [
-        {
-          "image-name": "ripple.png",
-          "name": "ripple",
-          "glass": false,
-          "fill-specializations": [
-            {
-              "value": {
-                "solid": "display-p3:1,1,1,0.55"
-              }
-            }
-          ]
-        }
-      ],
-      "name": "Back",
-      "opacity": 1,
-      "shadow": {
-        "kind": "none",
-        "opacity": 0
-      },
-      "specular": false,
-      "translucency": {
-        "enabled": false,
-        "value": 0
+      "specular" : true,
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.7
       }
     }
   ],
-  "supported-platforms": {
-    "squares": "shared"
+  "supported-platforms" : {
+    "squares" : "shared"
   }
 }
