@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Build Rinse.app into ./dist. Ad-hoc signed unless .env sets a team identity.
 # Ad-hoc builds cannot write the team-prefixed App Group, so settings do not persist.
-# Requires: Xcode, xcodegen (brew install xcodegen), rsvg-convert (brew install librsvg).
+# Requires: Xcode, xcodegen (brew install xcodegen).
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -20,9 +20,6 @@ fi
 MARKETING_VERSION="${MARKETING_VERSION:-$(git describe --tags --always --dirty 2>/dev/null || echo dev)-local}"
 SIGN_ARGS+=( "MARKETING_VERSION=${MARKETING_VERSION}" )
 [[ -n "${CURRENT_PROJECT_VERSION:-}" ]] && SIGN_ARGS+=( "CURRENT_PROJECT_VERSION=${CURRENT_PROJECT_VERSION}" )
-
-echo "▸ Generating app icon…"
-./icon/generate-icons.sh
 
 echo "▸ Generating Xcode project…"
 xcodegen generate

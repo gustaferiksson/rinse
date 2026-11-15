@@ -22,8 +22,8 @@ targets:
     sources:
       - path: Sources
       - path: Shared
-      # XcodeGen has no `resources` key; the asset catalog must be listed as a source.
-      - path: Resources/Assets.xcassets
+      # XcodeGen has no `resources` key; the icon must be listed as a source.
+      - path: Resources/AppIcon.icon
     dependencies:
       - target: RinseControl
         embed: true

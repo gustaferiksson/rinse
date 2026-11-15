@@ -23,7 +23,7 @@ Or grab the notarized `Rinse.app` from the [latest release](https://github.com/g
 
 ## Building
 
-You need Xcode, [XcodeGen](https://github.com/yonaskolb/XcodeGen) and `rsvg-convert` (`brew install xcodegen librsvg`).
+You need Xcode and [XcodeGen](https://github.com/yonaskolb/XcodeGen) (`brew install xcodegen`).
 
 ```sh
 cp .env.example .env   # then set DEVELOPMENT_TEAM and CODE_SIGN_IDENTITY

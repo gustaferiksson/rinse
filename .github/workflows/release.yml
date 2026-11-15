@@ -23,6 +23,6 @@ jobs:
       runner: xcode-27
       signed_by_build: true
       build: |
-        brew install xcodegen librsvg
+        brew install xcodegen
         CODE_SIGN_IDENTITY="Developer ID Application" DEVELOPMENT_TEAM=82K3YC8HVF \
           MARKETING_VERSION="$VERSION" CURRENT_PROJECT_VERSION="$BUILD" ./build.sh
