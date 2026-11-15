@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
   <defs>
     <linearGradient id="tile" x1="0.2" y1="0" x2="0.8" y2="1">
-      <stop offset="0" stop-color="#e3f4ff"/>
-      <stop offset="0.5" stop-color="#b4e0fb"/>
-      <stop offset="1" stop-color="#7cc3f0"/>
+      <stop offset="0" stop-color="#a9dcfb"/>
+      <stop offset="0.5" stop-color="#6dbaf0"/>
+      <stop offset="1" stop-color="#3a93dc"/>
     </linearGradient>
     <radialGradient id="body" gradientUnits="userSpaceOnUse" cx="500" cy="580" r="270">
-      <stop offset="0" stop-color="#ffffff" stop-opacity="0.10"/>
-      <stop offset="0.65" stop-color="#ffffff" stop-opacity="0.18"/>
-      <stop offset="0.9" stop-color="#3f9ee0" stop-opacity="0.5"/>
-      <stop offset="1" stop-color="#1a6fb8" stop-opacity="0.75"/>
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.30"/>
+      <stop offset="0.55" stop-color="#ffffff" stop-opacity="0.22"/>
+      <stop offset="0.85" stop-color="#1f74c4" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#0b4f96" stop-opacity="0.9"/>
     </radialGradient>
     <linearGradient id="rim" gradientUnits="userSpaceOnUse" x1="330" y1="200" x2="700" y2="830">
       <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
@@ -46,7 +46,7 @@
   <rect x="92" y="92" width="840" height="840" rx="196" ry="196" fill="url(#tile)"/>
 
   <g clip-path="url(#tileClip)">
-    <ellipse cx="532" cy="842" rx="210" ry="36" fill="#0d5b9c" opacity="0.35" filter="url(#blur24)"/>
+    <ellipse cx="532" cy="842" rx="210" ry="36" fill="#0a3f75" opacity="0.55" filter="url(#blur24)"/>
     <ellipse cx="560" cy="836" rx="120" ry="20" fill="#ffffff" opacity="0.5" filter="url(#blur24)"/>
   </g>
 
@@ -59,7 +59,7 @@
   </g>
 
   <path d="M512 192 C 598 306 740 446 740 592 A 228 228 0 0 1 284 592 C 284 446 426 306 512 192 Z"
-        fill="none" stroke="url(#rim)" stroke-width="12" stroke-linejoin="round"/>
+        fill="none" stroke="url(#rim)" stroke-width="14" stroke-linejoin="round"/>
 
   <ellipse cx="640" cy="560" rx="22" ry="34" fill="#ffffff" opacity="0.85" transform="rotate(-20 640 560)" filter="url(#blur6)"/>
 
